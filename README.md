@@ -1,6 +1,6 @@
 # Link to Hyrule
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+an app to view data from the Zelda game Breath of the Wild
 
 Currently, two official plugins are available:
 
