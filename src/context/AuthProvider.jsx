@@ -29,7 +29,7 @@ function AuthContextProvider({children}) {
                 {username: user.username, password: user.password});
             if (response.status === 200) {
                 setAuth({...auth, isAuth: true});
-                console.log("login success", response);
+                localStorage.setItem("jwt", response.data.accessToken);
                 navigate("/profile");
             }
         } catch (err) {
