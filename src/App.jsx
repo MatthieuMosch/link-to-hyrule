@@ -7,12 +7,14 @@ import Login from "./pages/login/Login.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import NotFound from "./pages/notfound/NotFound.jsx";
 import {AuthContext} from "./context/AuthProvider.jsx";
+import Header from "./components/header/Header.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 function App() {
     const {isAuth} = useContext(AuthContext);
     return (
         <>
-            <header>logo and navigation</header>
+            <Header/>
             <main>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
@@ -22,7 +24,7 @@ function App() {
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </main>
-            <footer>disclaimer</footer>
+            <Footer/>
         </>
     )
 }

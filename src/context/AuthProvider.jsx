@@ -1,4 +1,5 @@
 import {createContext, useState} from "react";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -6,17 +7,24 @@ function AuthContextProvider({children}) {
     const uri = "https://frontend-educational-backend.herokuapp.com/api/";
     const [auth, setAuth] = useState({
         isAuth: false,
-        user: {},
+        user: {
+            username: "",
+            email: "",
+            password: "",
+            info: "",
+            role: ["user"]
+        },
         isDone: false,
-        });
+    });
     const [errorMsg, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    async function login(){
+    async function login(user) {
         setError("");
         setLoading(true);
         try {
-            const response = await axios
+            const response = await axios.post(uri + "auth/signin", user);
+            console.log("login response", response);
         } catch (err) {
             setError(err.message);
             console.error(err);
