@@ -58,9 +58,9 @@ function Register() {
                 </InputField>
                 <InputField type="password" name="password" placeholder="******"
                             value={formState.password} changeHandler={handleChange}>
-                    E-mail:
+                    Password:
                 </InputField>
-                <button type="submit">Registreren</button>
+                <button type="submit">Register</button>
             </form>
             {loading && <h2>Processing....</h2>}
             {errorMsg && <dialog open>{errorMsg}</dialog>}
