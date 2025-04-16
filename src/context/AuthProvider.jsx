@@ -1,10 +1,12 @@
 import {createContext, useState} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
 function AuthContextProvider({children}) {
     const uri = "https://frontend-educational-backend.herokuapp.com/api/";
+    const navigate = useNavigate();
     const [auth, setAuth] = useState({
         isAuth: false,
         user: {
@@ -23,8 +25,13 @@ function AuthContextProvider({children}) {
         setError("");
         setLoading(true);
         try {
-            const response = await axios.post(uri + "auth/signin", user);
-            console.log("login response", response);
+            const response = await axios.post(uri + "auth/signin",
+                {username: user.username, password: user.password});
+            if (response.status === 200) {
+                setAuth({...auth, isAuth: true});
+                console.log("login success", response);
+                navigate("/profile");
+            }
         } catch (err) {
             setError(err.message);
             console.error(err);
@@ -35,7 +42,7 @@ function AuthContextProvider({children}) {
 
     return (
         <AuthContext.Provider value={{uri, ...auth, login}}>
-            {children}
+            {loading ? <h1>Processing...</h1> : children}
             {errorMsg && <dialog open>{errorMsg}</dialog>}
         </AuthContext.Provider>
     );
