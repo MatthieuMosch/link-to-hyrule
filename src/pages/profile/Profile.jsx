@@ -9,7 +9,7 @@ function Profile() {
             <p>user: {user.username}</p>
             <p>email: {user.email}</p>
             <p>info: {user.info}</p>
-            <p>role: {user.role[0]}</p>
+            <p>role: {user.role && user.role[0]}</p>
         </>
     );
 }

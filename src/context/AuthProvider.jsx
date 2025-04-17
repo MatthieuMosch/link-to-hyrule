@@ -21,11 +21,11 @@ function AuthContextProvider({children}) {
         isDone: false,
     });
 
-    useEffect( () => {
+    useEffect(() => {
         const jwt = localStorage.getItem("jwt");
         if (jwt && checkJwt(jwt)) {
             console.log("still authenticated");
-            setAuth({...auth, isAuth: true, isDone: true });
+            setAuth({...auth, isAuth: true, isDone: true});
         } else {
             console.log("not authenticated");
             setAuth({...auth, isAuth: false, isDone: true});
@@ -34,7 +34,6 @@ function AuthContextProvider({children}) {
 
     async function login(user) {
         setError("");
-        setLoading(true);
         try {
             const response = await axios.post(uri + "auth/signin",
                 {username: user.username, password: user.password});
@@ -46,13 +45,16 @@ function AuthContextProvider({children}) {
         } catch (err) {
             setError(err.message);
             console.error(err);
-        } finally {
-            setLoading(false);
         }
     }
 
+    function logout() {
+        setAuth({...auth, isAuth: false, user: {}});
+        localStorage.removeItem("jwt");
+    }
+
     return (
-        <AuthContext.Provider value={{uri, ...auth, login}}>
+        <AuthContext.Provider value={{uri, ...auth, login, logout}}>
             {auth.isDone ? children : <h1>Processing...</h1>}
             {errorMsg && <dialog open>{errorMsg}</dialog>}
         </AuthContext.Provider>
