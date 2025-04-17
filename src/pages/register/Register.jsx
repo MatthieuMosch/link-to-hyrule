@@ -22,9 +22,7 @@ function Register() {
         setLoading(true);
         try {
             const response = await axios.post(uri + "auth/signup", formState);
-            console.log("signup response", response);
             if (response.status === 200) {
-                console.log("registration successful");
                 void login(formState);
             }
         } catch (err) {

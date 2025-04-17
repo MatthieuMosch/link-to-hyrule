@@ -24,10 +24,8 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const jwt = localStorage.getItem("jwt");
         if (jwt && checkJwt(jwt)) {
-            console.log("still authenticated");
             setAuth({...auth, isAuth: true, isDone: true});
         } else {
-            console.log("not authenticated");
             setAuth({...auth, isAuth: false, isDone: true});
         }
     }, []);
