@@ -1,12 +1,14 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {checkJwt} from "../helpers/checkJWT.jsx";
 
 export const AuthContext = createContext(null);
 
 function AuthContextProvider({children}) {
-    const uri = "https://frontend-educational-backend.herokuapp.com/api/";
     const navigate = useNavigate();
+    const uri = "https://frontend-educational-backend.herokuapp.com/api/";
+    const [errorMsg, setError] = useState("");
     const [auth, setAuth] = useState({
         isAuth: false,
         user: {
@@ -18,8 +20,17 @@ function AuthContextProvider({children}) {
         },
         isDone: false,
     });
-    const [errorMsg, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+
+    useEffect( () => {
+        const jwt = localStorage.getItem("jwt");
+        if (jwt && checkJwt(jwt)) {
+            console.log("still authenticated");
+            setAuth({...auth, isAuth: true, isDone: true });
+        } else {
+            console.log("not authenticated");
+            setAuth({...auth, isAuth: false, isDone: true});
+        }
+    }, []);
 
     async function login(user) {
         setError("");
@@ -42,7 +53,7 @@ function AuthContextProvider({children}) {
 
     return (
         <AuthContext.Provider value={{uri, ...auth, login}}>
-            {loading ? <h1>Processing...</h1> : children}
+            {auth.isDone ? children : <h1>Processing...</h1>}
             {errorMsg && <dialog open>{errorMsg}</dialog>}
         </AuthContext.Provider>
     );
