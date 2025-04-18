@@ -40,11 +40,13 @@ function AuthContextProvider({children}) {
                 setAuth({...auth, isAuth: true});
                 const jwt = response.data.accessToken;
                 localStorage.setItem("jwt", jwt);
+                console.log("getting user data");
                 void getUser(jwt);
             }
         } catch (err) {
             setError(err.message);
-            console.error(err);
+            console.error("login error", err);
+            setAuth({...auth, isAuth: false, isDone: true});
         }
     }
 
@@ -61,10 +63,15 @@ function AuthContextProvider({children}) {
                     },
                     isDone: true
                 });
+                // navigate("/profile");
+            } else {
+                console.error("getUser failed", response);
+                setAuth({...auth, isAuth: false, isDone: true});
             }
-            navigate("/profile");
+
         } catch (err) {
-            console.error(err);
+            console.error("getUser error", err);
+            setAuth({...auth, isAuth: false, isDone: true});
         } finally {
 
         }

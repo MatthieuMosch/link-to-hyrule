@@ -2,7 +2,7 @@ import "./Overview.css";
 
 function Overview() {
     return (
-        <></>
+        <h2>Overview</h2>
     );
 }
 
