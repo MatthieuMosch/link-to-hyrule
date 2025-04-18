@@ -25,7 +25,7 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const jwt = localStorage.getItem("jwt");
         if (jwt && checkJwt(jwt)) {
-            setAuth({...auth, isAuth: true, isDone: true});
+            void getUser(jwt);
         } else {
             setAuth({...auth, isAuth: false, isDone: true});
         }
@@ -54,10 +54,7 @@ function AuthContextProvider({children}) {
                 headers: {"Content-Type": "application/json", Authorization: `Bearer ${jwt}`}});
             console.log("user data", response);
             if (response.status === 200) {
-                setAuth({
-                    ...auth,
-                    isAuth: true,
-                    user: {
+                setAuth({...auth, isAuth: true, user: {
                         id: response.data.id,
                         username: response.data.username,
                         email: response.data.email
