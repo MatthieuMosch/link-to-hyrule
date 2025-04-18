@@ -13,7 +13,7 @@ function Register() {
         username: "",
         email: "",
         password: "",
-        info: "",
+        info: "Extra info",
         role: ["user"]
     })
 
