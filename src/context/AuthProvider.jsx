@@ -1,12 +1,13 @@
 import {createContext, useEffect, useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
 import {checkJwt} from "../helpers/checkJWT.jsx";
 
 export const AuthContext = createContext(null);
 
 function AuthContextProvider({children}) {
-    const navigate = useNavigate();
+    const controller = new AbortController();
+    // const navigate = useNavigate();
     const uri = "https://frontend-educational-backend.herokuapp.com/api/";
     const [errorMsg, setError] = useState("");
     const [auth, setAuth] = useState({
@@ -27,15 +28,21 @@ function AuthContextProvider({children}) {
         if (jwt && checkJwt(jwt)) {
             void getUser(jwt);
         } else {
-            setAuth({...auth, isAuth: false, isDone: true});
+            void logout();
+        }
+        return function cleanup() {
+            controller.abort();
         }
     }, []);
 
     async function login(user) {
         setError("");
         try {
-            const response = await axios.post(uri + "auth/signin",
-                {username: user.username, password: user.password});
+            const response = await axios.post(
+                uri + "auth/signin",
+                {username: user.username, password: user.password},
+                {signal: controller.signal}
+            );
             if (response.status === 200) {
                 setAuth({...auth, isAuth: true});
                 const jwt = response.data.accessToken;
@@ -51,8 +58,11 @@ function AuthContextProvider({children}) {
 
     async function getUser(jwt) {
         try {
-            const response = await axios.get(uri + "user", {
-                headers: {"Content-Type": "application/json", Authorization: `Bearer ${jwt}`}});
+            const response = await axios.get(
+                uri + "user",
+                {headers: {"Content-Type": "application/json", Authorization: `Bearer ${jwt}`},
+                    signal: controller.signal}
+            );
             if (response.status === 200) {
                 setAuth({...auth, isAuth: true, user: {
                         id: response.data.id,
