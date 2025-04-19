@@ -3,3 +3,12 @@ header {
     flex-direction: row;
     border: red solid 1px;
 }
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+}
+
+li {
+    list-style: none;
+}

@@ -44,7 +44,8 @@ function AuthContextProvider({children}) {
             }
         } catch (err) {
             setError(err.message);
-            console.error(err);
+            console.error("login error", err);
+            setAuth({...auth, isAuth: false, isDone: true});
         }
     }
 
@@ -52,7 +53,6 @@ function AuthContextProvider({children}) {
         try {
             const response = await axios.get(uri + "user", {
                 headers: {"Content-Type": "application/json", Authorization: `Bearer ${jwt}`}});
-            console.log("user data", response);
             if (response.status === 200) {
                 setAuth({...auth, isAuth: true, user: {
                         id: response.data.id,
@@ -61,10 +61,15 @@ function AuthContextProvider({children}) {
                     },
                     isDone: true
                 });
+                // navigate("/profile");
+            } else {
+                console.error("getUser failed", response);
+                setAuth({...auth, isAuth: false, isDone: true});
             }
-            navigate("/profile");
+
         } catch (err) {
-            console.error(err);
+            console.error("getUser error", err);
+            setAuth({...auth, isAuth: false, isDone: true});
         } finally {
 
         }

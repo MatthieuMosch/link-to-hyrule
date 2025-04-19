@@ -23,8 +23,8 @@ function App() {
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/profile" element={isAuth ? <Profile/> : <Navigate to="/login"/>}/>
-                    <Route path="/overview" element={isAuth ? <Overview/> : <Navigate to="/login"/>}/>
-                    <Route path="/detail" element={isAuth ? <Detail/> : <Navigate to="/login"/>}/>
+                    <Route path="/overview/:category" element={isAuth ? <Overview/> : <Navigate to="/login"/>}/>
+                    <Route path="/detail/:id" element={isAuth ? <Detail/> : <Navigate to="/login"/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </main>
