@@ -40,7 +40,6 @@ function AuthContextProvider({children}) {
                 setAuth({...auth, isAuth: true});
                 const jwt = response.data.accessToken;
                 localStorage.setItem("jwt", jwt);
-                console.log("getting user data");
                 void getUser(jwt);
             }
         } catch (err) {
@@ -54,7 +53,6 @@ function AuthContextProvider({children}) {
         try {
             const response = await axios.get(uri + "user", {
                 headers: {"Content-Type": "application/json", Authorization: `Bearer ${jwt}`}});
-            console.log("user data", response);
             if (response.status === 200) {
                 setAuth({...auth, isAuth: true, user: {
                         id: response.data.id,
