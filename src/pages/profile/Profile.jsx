@@ -1,8 +1,12 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {AuthContext} from "../../context/AuthProvider.jsx";
 
 function Profile() {
-    const {user} = useContext(AuthContext);
+    const {user, getUser} = useContext(AuthContext);
+
+    useEffect(() => {
+        void getUser();
+    }, [])
 
     return (
         <>
