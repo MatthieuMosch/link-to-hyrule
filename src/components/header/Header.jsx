@@ -12,7 +12,7 @@ function Header() {
             <button type="button" onClick={() => navigate("/")}>Home</button>
             <p>logged in : {isAuth.toString()}</p>
             <button type="button" onClick={logout}>Logout</button>
-            Link to Hyrule
+            <h1>Link to Hyrule</h1>
             <nav>
                 <ul>
                     <li><NavLink
