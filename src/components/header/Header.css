@@ -1,14 +1,27 @@
 header {
     display: flex;
     flex-direction: row;
-    border: red solid 1px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    color: darkgoldenrod;
+}
+
+img {
+    height: 50px;
 }
 
 nav ul {
     display: flex;
     flex-direction: row;
+    list-style: none;
 }
 
-li {
-    list-style: none;
+.nav-button {
+    height: 3em;
+    padding: 10px;
+    border-color: goldenrod;
+    background-color: darkgoldenrod;
+    color: black;
 }

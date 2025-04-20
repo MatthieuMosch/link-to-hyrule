@@ -1,46 +1,31 @@
 import {useContext} from "react";
-import {NavLink, useNavigate} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context/AuthProvider.jsx";
+import logo from "../../assets/zeldaicon.png";
 
 import "./Header.css";
+import Button from "../button/Button.jsx";
 
 function Header() {
-    const {isAuth, logout} = useContext(AuthContext);
     const navigate = useNavigate();
+    const {isAuth, logout} = useContext(AuthContext);
     return (
         <header>
-            <button type="button" onClick={() => navigate("/")}>Home</button>
-            <p>logged in : {isAuth.toString()}</p>
-            <button type="button" onClick={logout}>Logout</button>
+            <Link to="/">
+                <figure className="logo"><img src={logo} alt="logo"/></figure>
+            </Link>
             <h1>Link to Hyrule</h1>
             <nav>
-                <ul>
-                    <li><NavLink
-                        className={({isActive}) => isActive ? "active-link" : "default-link"}
-                        to="/">
-                        Home
-                    </NavLink></li>
-                    <li><NavLink
-                        className={({isActive}) => isActive ? "active-link" : "default-link"}
-                        to="/register">
-                        Register
-                    </NavLink></li>
-                    <li><NavLink
-                        className={({isActive}) => isActive ? "active-link" : "default-link"}
-                        to="/login">
-                        Login
-                    </NavLink></li>
-                    <li><NavLink
-                        className={({isActive}) => isActive ? "active-link" : "default-link"}
-                        to="/profile">
-                        Profile
-                    </NavLink></li>
-                    <li><NavLink
-                        className={({isActive}) => isActive ? "active-link" : "default-link"}
-                        to="/">
-                        Logout
-                    </NavLink></li>
-                </ul>
+                {isAuth ?
+                    <ul>
+                        <li><Button className="nav-button" onClick={() => navigate("/profile")}>Profile</Button></li>
+                        <li><Button className="nav-button" onClick={logout}>Logout</Button></li>
+                    </ul> :
+                    <ul>
+                        <li><Button className="nav-button" onClick={() => navigate("/register")}>Register</Button></li>
+                        <li><Button className="nav-button" onClick={() => navigate("/login")}>Login</Button></li>
+                    </ul>
+                }
             </nav>
         </header>
     );

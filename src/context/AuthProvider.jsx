@@ -26,14 +26,11 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const jwt = localStorage.getItem("jwt");
         if (jwt && checkJwt(jwt)) {
-            console.log("jwt nog geldig");
             void getUser();
         } else {
-            console.log("jwt niet meer geldig");
             void logout();
         }
         return function cleanup() {
-            console.log("Cleanup");
             controller.abort();
         }
     }, []);
@@ -47,15 +44,14 @@ function AuthContextProvider({children}) {
                 {signal: controller.signal}
             );
             if (response.status === 200) {
-                console.log("user registered");
                 void login(user);
             }
         } catch (err) {
             if (axios.isCancel(err)) {
-                console.log("Request: ", err.message);
+                console.error("Request: ", err.message);
             } else {
                 setErrorMsg(err.response.data.message);
-                console.error(err);
+                console.error("Registration error", err);
             }
         }
     }
@@ -69,7 +65,6 @@ function AuthContextProvider({children}) {
                 {signal: controller.signal}
             );
             if (response.status === 200) {
-                console.log("user logged in success");
                 setAuth({...auth, isAuth: true, isDone: true});
                 const jwt = response.data.accessToken;
                 localStorage.setItem("jwt", jwt);
@@ -78,10 +73,10 @@ function AuthContextProvider({children}) {
             }
         } catch (err) {
             if (axios.isCancel(err)) {
-                console.log("Request: ", err.message);
+                console.error("Request: ", err.message);
             } else {
                 setErrorMsg(err.message);
-                console.error("login error", err);
+                console.error("Login error", err);
             }
             setAuth({...auth, isAuth: false, isDone: true});
         }
@@ -96,7 +91,6 @@ function AuthContextProvider({children}) {
                     signal: controller.signal}
             );
             if (response.status === 200) {
-                console.log("user data success");
                 setAuth({...auth, isAuth: true, user: {
                         id: response.data.id,
                         username: response.data.username,
@@ -105,14 +99,14 @@ function AuthContextProvider({children}) {
                     isDone: true
                 });
             } else {
-                console.error("getUser failed", response);
+                console.error("User data error", response);
                 setAuth({...auth, isAuth: false, isDone: true});
             }
         } catch (err) {
             if (axios.isCancel(err)) {
-                console.log("Request: ", err.message);
+                console.error("Request: ", err.message);
             } else {
-                console.error("getUser error", err);
+                console.error("User data error", err);
             }
             setAuth({...auth, isAuth: false, isDone: true});
         }
