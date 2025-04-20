@@ -1,0 +1,25 @@
+.home-story {
+    padding: 2rem;
+}
+
+.home-story p {
+    padding-bottom: 2rem;
+}
+
+.selectors {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.selector {
+    flex-basis: 100px;
+}
+
+.selector-image {
+    flex-basis: 16%;
+}
+
+.selector-image img {
+    max-width: 100%;
+}
