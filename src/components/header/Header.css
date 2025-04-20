@@ -4,6 +4,13 @@ header {
     border: red solid 1px;
 }
 
+figure.logo {
+}
+
+img {
+    width: 100px;
+}
+
 nav ul {
     display: flex;
     flex-direction: row;
