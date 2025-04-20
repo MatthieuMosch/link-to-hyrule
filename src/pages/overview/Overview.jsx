@@ -31,7 +31,7 @@ function Overview() {
                     console.error("Request: ", err.message);
                 } else {
                     setErrorMsg(err.message);
-                    console.error("User data error", err);
+                    console.error("Overview error", err);
                 }
             } finally {
                 setLoading(false);
