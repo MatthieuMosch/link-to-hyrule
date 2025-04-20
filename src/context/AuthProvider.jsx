@@ -1,15 +1,15 @@
 import {createContext, useEffect, useState} from "react";
 import axios from "axios";
-// import {useNavigate} from "react-router-dom";
 import {checkJwt} from "../helpers/checkJWT.jsx";
+import {useNavigate} from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
 function AuthContextProvider({children}) {
+    const navigate = useNavigate();
     const controller = new AbortController();
-    // const navigate = useNavigate();
     const uri = "https://frontend-educational-backend.herokuapp.com/api/";
-    const [errorMsg, setError] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
     const [auth, setAuth] = useState({
         isAuth: false,
         user: {
@@ -26,17 +26,42 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         const jwt = localStorage.getItem("jwt");
         if (jwt && checkJwt(jwt)) {
-            void getUser(jwt);
+            console.log("jwt nog geldig");
+            void getUser();
         } else {
+            console.log("jwt niet meer geldig");
             void logout();
         }
         return function cleanup() {
+            console.log("Cleanup");
             controller.abort();
         }
     }, []);
 
+    async function register(user) {
+        setErrorMsg("");
+        try {
+            const response = await axios.post(
+                uri + "auth/signup",
+                user,
+                {signal: controller.signal}
+            );
+            if (response.status === 200) {
+                console.log("user registered");
+                void login(user);
+            }
+        } catch (err) {
+            if (axios.isCancel(err)) {
+                console.log("Request: ", err.message);
+            } else {
+                setErrorMsg(err.response.data.message);
+                console.error(err);
+            }
+        }
+    }
+
     async function login(user) {
-        setError("");
+        setErrorMsg("");
         try {
             const response = await axios.post(
                 uri + "auth/signin",
@@ -44,19 +69,26 @@ function AuthContextProvider({children}) {
                 {signal: controller.signal}
             );
             if (response.status === 200) {
-                setAuth({...auth, isAuth: true});
+                console.log("user logged in success");
+                setAuth({...auth, isAuth: true, isDone: true});
                 const jwt = response.data.accessToken;
                 localStorage.setItem("jwt", jwt);
-                void getUser(jwt);
+                void getUser();
+                navigate("/");
             }
         } catch (err) {
-            setError(err.message);
-            console.error("login error", err);
+            if (axios.isCancel(err)) {
+                console.log("Request: ", err.message);
+            } else {
+                setErrorMsg(err.message);
+                console.error("login error", err);
+            }
             setAuth({...auth, isAuth: false, isDone: true});
         }
     }
 
-    async function getUser(jwt) {
+    async function getUser() {
+        const jwt = localStorage.getItem("jwt");
         try {
             const response = await axios.get(
                 uri + "user",
@@ -64,6 +96,7 @@ function AuthContextProvider({children}) {
                     signal: controller.signal}
             );
             if (response.status === 200) {
+                console.log("user data success");
                 setAuth({...auth, isAuth: true, user: {
                         id: response.data.id,
                         username: response.data.username,
@@ -71,17 +104,17 @@ function AuthContextProvider({children}) {
                     },
                     isDone: true
                 });
-                // navigate("/profile");
             } else {
                 console.error("getUser failed", response);
                 setAuth({...auth, isAuth: false, isDone: true});
             }
-
         } catch (err) {
-            console.error("getUser error", err);
+            if (axios.isCancel(err)) {
+                console.log("Request: ", err.message);
+            } else {
+                console.error("getUser error", err);
+            }
             setAuth({...auth, isAuth: false, isDone: true});
-        } finally {
-
         }
     }
 
@@ -98,10 +131,11 @@ function AuthContextProvider({children}) {
             isDone: true
         });
         localStorage.removeItem("jwt");
+        navigate("/");
     }
 
     return (
-        <AuthContext.Provider value={{uri, ...auth, login, logout}}>
+        <AuthContext.Provider value={{uri, ...auth, register, login, logout, getUser}}>
             {auth.isDone ? children : <h1>Authentication Processing...</h1>}
             {errorMsg && <dialog open>{errorMsg}</dialog>}
         </AuthContext.Provider>

@@ -10,6 +10,8 @@ function Header() {
     return (
         <header>
             <button type="button" onClick={() => navigate("/")}>Home</button>
+            <p>logged in : {isAuth.toString()}</p>
+            <button type="button" onClick={logout}>Logout</button>
             Link to Hyrule
             <nav>
                 <ul>
@@ -20,20 +22,24 @@ function Header() {
                     </NavLink></li>
                     <li><NavLink
                         className={({isActive}) => isActive ? "active-link" : "default-link"}
+                        to="/register">
+                        Register
+                    </NavLink></li>
+                    <li><NavLink
+                        className={({isActive}) => isActive ? "active-link" : "default-link"}
                         to="/login">
                         Login
                     </NavLink></li>
                     <li><NavLink
                         className={({isActive}) => isActive ? "active-link" : "default-link"}
-                        to="/register">
-                        Register
+                        to="/profile">
+                        Profile
                     </NavLink></li>
                     <li><NavLink
                         className={({isActive}) => isActive ? "active-link" : "default-link"}
                         to="/">
                         Logout
                     </NavLink></li>
-                    <li><button type="button" onClick={logout}>Logout</button></li>
                 </ul>
             </nav>
         </header>

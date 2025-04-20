@@ -8,7 +8,7 @@ function Overview() {
     const controller = new AbortController();
     const uri = "https://botw-compendium.herokuapp.com/api/v3/compendium/";
     const {category} = useParams();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [tiles, setTiles] = useState([]);
 
@@ -18,6 +18,8 @@ function Overview() {
 
     useEffect(() => {
         async function getData() {
+            setErrorMsg("");
+            setLoading(true);
             try {
                 const response = await axios.get(
                     `${uri}category/${category}`,
@@ -25,8 +27,12 @@ function Overview() {
                 );
                 setTiles(response.data.data);
             } catch (err) {
-                setErrorMsg(err.message);
-                console.error("getData error", err);
+                if (axios.isCancel(err)) {
+                    console.log("Request: ", err.message);
+                } else {
+                    setErrorMsg(err.message);
+                    console.error("getData error", err);
+                }
             } finally {
                 setLoading(false);
             }
@@ -36,6 +42,7 @@ function Overview() {
             controller.abort();
         }
     }, []);
+
 
     return (
         <>

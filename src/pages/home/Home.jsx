@@ -6,8 +6,6 @@ function Home() {
     return (
         <>
             <h1>Homepage</h1>
-            <Link to="/profile">Profile</Link>
-            <Link to="/detail">Detail</Link>
             <Button onClick={() => navigate("/overview/creatures")} variant="primary">
                 Overview Creatures
             </Button>
