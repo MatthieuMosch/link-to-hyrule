@@ -9,12 +9,13 @@ function Home() {
         <>
             <section className="home-story">
                 <p>
-                    Link traveled all over Hyrule and encountered many creatures and monsters each with their own characteristics.
-                    On his travels he learned a lot about what nature can offer and how to prepare a healthy and beneficiary meals.
-                    Link, the good and helpful knight as he is, likes to shares his knowledge with you.
+                    Link traveled all over Hyrule and encountered many creatures and monsters each with their own
+                    characteristics. On his travels he learned a lot about what nature can offer and how to prepare a
+                    healthy and beneficiary meals. Link, as the good and helpful knight he is, likes to shares his
+                    knowledge with you.
                 </p>
                 <p>
-                    Click on the buttons below to learn more about Hyrule and what you can find there.
+                    Click on each of the buttons below to learn more about Hyrule and what you can find there.
                 </p>
             </section>
             <section className="selectors">
