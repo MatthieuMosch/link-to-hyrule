@@ -1,7 +1,15 @@
+import "./Footer.css";
+import novi from "../../assets/NOVI logo wit.svg";
+
 function Footer() {
     return (
         <footer>
-            <a href="https://store.nintendo.nl/nl/the-legend-of-zelda-breath-of-the-wild-000000000002520048">Zelda BotW</a>
+            <h5><p>Matthieu Mosch</p><p>student frontend development</p></h5>
+            <figure className="logo">
+                <a href="https://www.novi.nl/" target="_blank">
+                    <img src={novi} alt="logo NOVI"/>
+                </a>
+            </figure>
         </footer>
     );
 }

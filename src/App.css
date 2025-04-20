@@ -5,7 +5,25 @@
   padding: 0;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  min-height: calc(100vh - 70px - 70px);
+}
+
 button {
   margin: 5px;
   border-radius: 10px;
+}
+
+img {
+  height: 100%;
+}
+
+.logo {
+  height: 50px;
 }
