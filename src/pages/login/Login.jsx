@@ -1,6 +1,7 @@
 import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthProvider.jsx";
 import InputField from "../../components/inputfield/InputField.jsx";
+import Button from "../../components/button/Button.jsx";
 
 function Login() {
     const {login} = useContext(AuthContext);
@@ -33,7 +34,7 @@ function Login() {
                             value={formState.password} changeHandler={handleChange}>
                     Password:
                 </InputField>
-                <button type="submit">Login</button>
+                <Button type="submit">Login</Button>
             </form>
         </>
     );

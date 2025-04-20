@@ -28,10 +28,10 @@ function Overview() {
                 setTiles(response.data.data);
             } catch (err) {
                 if (axios.isCancel(err)) {
-                    console.log("Request: ", err.message);
+                    console.error("Request: ", err.message);
                 } else {
                     setErrorMsg(err.message);
-                    console.error("getData error", err);
+                    console.error("User data error", err);
                 }
             } finally {
                 setLoading(false);

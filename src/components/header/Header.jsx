@@ -18,12 +18,12 @@ function Header() {
             <nav>
                 {isAuth ?
                     <ul>
-                        <li><Button onClick={() => navigate("/profile")}>Profile</Button></li>
-                        <li><Button onClick={logout}>Logout</Button></li>
+                        <li><Button className="nav-button" onClick={() => navigate("/profile")}>Profile</Button></li>
+                        <li><Button className="nav-button" onClick={logout}>Logout</Button></li>
                     </ul> :
                     <ul>
-                        <li><Button onClick={() => navigate("/register")}>Register</Button></li>
-                        <li><Button onClick={() => navigate("/login")}>Login</Button></li>
+                        <li><Button className="nav-button" onClick={() => navigate("/register")}>Register</Button></li>
+                        <li><Button className="nav-button" onClick={() => navigate("/login")}>Login</Button></li>
                     </ul>
                 }
             </nav>
