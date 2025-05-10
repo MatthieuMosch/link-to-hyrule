@@ -10,6 +10,8 @@ h2 {
 
 .tile {
     flex-basis: 12.5%;
+    /*background-color: white;*/
+    /*color: black;*/
 }
 
 .tile-image {

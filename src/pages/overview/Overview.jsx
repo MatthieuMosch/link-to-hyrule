@@ -7,8 +7,7 @@ import InputField from "../../components/inputfield/InputField.jsx";
 
 function Overview() {
     const controller = new AbortController();
-    const uri = "https://botw-compendium.herokuapp.com/api/v3/compendium";
-    const regions = "https://botw-compendium.herokuapp.com/api/v3/regions";
+    const baseUri = "https://botw-compendium.herokuapp.com/api/v3/";
     const {category} = useParams();
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
@@ -20,21 +19,13 @@ function Overview() {
         async function getData() {
             setErrorMsg("");
             setLoading(true);
+            const uri = baseUri + ((category === "regions") ?
+                "regions/all" :
+                "compendium/category/" + category);
+            console.log("uri2", uri);
             try {
-                if (category === "regions") {
-                    const response = await axios.get(
-                        `${regions}/all`,
-                        {signal: controller.signal}
-                    );
-                    console.log("regions", response);
-                    setTiles(response.data.data);
-                } else {
-                    const response = await axios.get(
-                        `${uri}/category/${category}`,
-                        {signal: controller.signal}
-                    );
-                    setTiles(response.data.data);
-                }
+                const response = await axios.get(uri, {signal: controller.signal});
+                setTiles(response.data.data);
             } catch (err) {
                 if (axios.isCancel(err)) {
                     console.error("Request: ", err.message);
@@ -78,7 +69,7 @@ function Overview() {
                         <section className="tiles">
                             {
                                 filteredTiles.map(tile => (
-                                    <Tile key={tile.id} id={tile.id} name={tile.name} img={tile.image}/>
+                                    <Tile category={category} key={tile.id} id={tile.id} name={tile.name} img={tile.image}/>
                                 ))
                             }
                         </section> :
