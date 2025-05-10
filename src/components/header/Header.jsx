@@ -11,11 +11,11 @@ function Header() {
     const {isAuth, logout} = useContext(AuthContext);
     return (
         <header>
-            <Link to="/">
+            <Link className="title" to="/">
                 <figure className="logo"><img src={logo} alt="logo"/></figure>
+                Link to Hyrule
             </Link>
-            <h1>Link to Hyrule</h1>
-            <nav>
+            <nav className="authentication">
                 {isAuth ?
                     <ul>
                         <li><Button className="nav-button" onClick={() => navigate("/profile")}>Profile</Button></li>

@@ -18,12 +18,9 @@ main {
 button {
   margin: 5px;
   border-radius: 10px;
+  font-size: 2em;
 }
 
 img {
   height: 100%;
-}
-
-.logo {
-  height: 50px;
 }

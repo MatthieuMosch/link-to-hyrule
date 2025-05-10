@@ -3,7 +3,7 @@ import "./InputField.css";
 function InputField({name, type, placeholder, value, changeHandler, children}) {
     return (
         <label htmlFor={name}>
-            {children}
+            <p>{children}</p>
             <input
                 type={type}
                 id={name}

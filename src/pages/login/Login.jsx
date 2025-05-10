@@ -23,7 +23,7 @@ function Login() {
     }
 
     return (
-        <>
+        <main>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <InputField type="text" name="username" placeholder="Enter username"
@@ -36,7 +36,7 @@ function Login() {
                 </InputField>
                 <Button type="submit">Login</Button>
             </form>
-        </>
+        </main>
     );
 }
 

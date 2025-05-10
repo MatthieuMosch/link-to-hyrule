@@ -12,14 +12,6 @@
     justify-content: center;
 }
 
-.selector {
-    flex-basis: 100px;
-}
-
-.selector-image {
-    flex-basis: 16%;
-}
-
 .selector-image img {
     max-width: 100%;
 }
