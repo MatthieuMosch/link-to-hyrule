@@ -9,12 +9,12 @@ function Profile() {
     }, [])
 
     return (
-        <>
+        <main>
             <h1>Profile</h1>
             <p>username: {user.username}</p>
             <p>e-mail: {user.email}</p>
             {/*<p>info: {user.info}</p>*/}
-        </>
+        </main>
     );
 }
 

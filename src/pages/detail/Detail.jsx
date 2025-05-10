@@ -20,7 +20,6 @@ function Detail() {
                     `${uri}entry/${id}`,
                     {signal: controller.signal}
                 );
-                console.log("detail", response);
                 setDetails(response.data.data);
             } catch (err) {
                 if (axios.isCancel(err)) {
@@ -41,7 +40,7 @@ function Detail() {
     }, []);
 
     return (
-        <>
+        <main className="details">
             {loading && <h2>Loading tiles...</h2>}
             {errorMsg ? <h2>error {errorMsg}</h2> :
                 <article className="detail">
@@ -79,7 +78,7 @@ function Detail() {
                     }
                 </article>
             }
-        </>
+        </main>
     );
 }
 
