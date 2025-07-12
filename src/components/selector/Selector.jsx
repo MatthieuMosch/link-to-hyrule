@@ -9,6 +9,7 @@ function Selector({img, alt, to}) {
         <Button className="selector" onClick={() => navigate(to)}>
             <figure className="selector-image">
                 <img src={img} alt={alt}/>
+                <figcaption>{alt}</figcaption>
             </figure>
         </Button>
     );

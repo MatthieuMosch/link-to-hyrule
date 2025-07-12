@@ -22,7 +22,6 @@ function Overview() {
             const uri = baseUri + ((category === "regions") ?
                 "regions/all" :
                 "compendium/category/" + category);
-            console.log("uri2", uri);
             try {
                 const response = await axios.get(uri, {signal: controller.signal});
                 setTiles(response.data.data);
@@ -63,8 +62,8 @@ function Overview() {
                 </InputField>
             </nav>
             <article className="table">
-                {loading && <h2>Loading tiles...</h2>}
-                {errorMsg ? <h2>error {errorMsg}</h2> :
+                {loading && <dialog open>Loading tiles...</dialog>}
+                {errorMsg ? <dialog open>{errorMsg}</dialog> :
                     filteredTiles.length > 0 ?
                         <section className="tiles">
                             {
@@ -72,8 +71,7 @@ function Overview() {
                                     <Tile category={category} key={tile.id} id={tile.id} name={tile.name} img={tile.image}/>
                                 ))
                             }
-                        </section> :
-                        <h2>No data found</h2>
+                        </section> : null
                 }
             </article>
         </main>

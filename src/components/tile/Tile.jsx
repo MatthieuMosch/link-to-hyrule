@@ -4,9 +4,12 @@ import Button from "../button/Button.jsx";
 
 function Tile({category, id, name, img}) {
     const navigate = useNavigate();
-    if (category === "regions") img = `/public/regions/${name}.jpg`;
+    if (category === "regions") {
+        id = name;
+        img = `/regions/${name}.jpg`;
+    }
     return (
-        <Button className="tile" onClick={() => navigate(`/detail/${id}`)}>
+        <Button className="tile" onClick={() => navigate(`/detail/${category}/${id}`)}>
             <figure className="tile-image">
                 <img src={img} alt={name}/>
                 <figcaption>{name}</figcaption>

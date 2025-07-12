@@ -1,0 +1,25 @@
+.close {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    width: 2em;
+    height: 2em;
+    transition: rotate 0.5s;
+}
+.close:hover {
+    rotate: 90deg;
+}
+.close:before, .close:after {
+    position: absolute;
+    left: calc(1em - 1px);
+    content: ' ';
+    height: 2em;
+    width: 2px;
+    background-color: black;
+}
+.close:before {
+    transform: rotate(45deg);
+}
+.close:after {
+    transform: rotate(-45deg);
+}
