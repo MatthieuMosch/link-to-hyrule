@@ -4,7 +4,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    color: darkgoldenrod;
+    color: var(--back-main);
+    background-color: var(--dark);
 }
 
 .title {
@@ -22,7 +23,7 @@ header {
 
 a {
     text-decoration: none;
-    color: darkgoldenrod;
+    color: var(--back-main);
 }
 
 nav ul {
@@ -36,6 +37,6 @@ nav ul {
     font-size: 1em;
     padding: 0.5em;
     border-color: goldenrod;
-    background-color: darkgoldenrod;
-    color: black;
+    background-color: var(--back-main);
+    color: var(--dark);
 }

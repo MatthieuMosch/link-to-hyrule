@@ -10,7 +10,7 @@ h2 {
 
 .tile {
     flex-basis: 12.5%;
-    /*background-color: white;*/
+    background-color: var(--tileback);
     /*color: black;*/
 }
 

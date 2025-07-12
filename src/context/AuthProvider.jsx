@@ -5,6 +5,12 @@ import {useNavigate} from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
+// TODO : check if alive (test to wakeup)
+// GET /api/test/all
+// answer should be : "De API is bereikbaar."
+// https://frontend-educational-backend.herokuapp.com/api/test/all
+// more info on : https://github.com/hogeschoolnovi/novi-educational-backend-documentation?tab=readme-ov-file#0-test
+
 function AuthContextProvider({children}) {
     const navigate = useNavigate();
     const controller = new AbortController();
