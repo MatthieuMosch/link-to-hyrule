@@ -28,9 +28,19 @@ footer {
 button {
   margin: 5px;
   border-radius: 10px;
-  font-size: 2em;
+  font-size: 1em;
+  padding: 5px 10px;
 }
 
 img {
   height: 100%;
+}
+
+h1, h2{
+  text-align: center;
+  text-transform: capitalize;
+}
+
+h1 {
+  margin: 1em;
 }

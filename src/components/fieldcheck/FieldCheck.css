@@ -1,0 +1,13 @@
+.field-check {
+    width: 100%;
+    background-color: var(--sunburst);
+    padding: 0 1em;
+}
+
+.field-check.true {
+    color: green;
+}
+
+.field-check.false {
+    color: red;
+}

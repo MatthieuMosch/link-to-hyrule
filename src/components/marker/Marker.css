@@ -12,11 +12,11 @@
 }
 
 
-.true {
+.marker.true {
     background-color: var(--slain);
 }
 
-.false {
+.marker.false {
     background-color: var(--not-slain);
 }
 
