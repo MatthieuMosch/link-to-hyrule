@@ -77,7 +77,10 @@ function Register() {
                 <FieldCheck check={checkEmail}>E-mail contains an "@"</FieldCheck>
                 <FieldCheck check={checkLength}>Password is at least 6 characters long</FieldCheck>
                 <FieldCheck check={checkConfirm}>Passwords match</FieldCheck>
-                <Button type="submit">Register</Button>
+                <Button type="submit"
+                        disabled={!checkEmail || !checkLength || !checkConfirm}>
+                    Register
+                </Button>
                 {errorMsg &&
                     <Error>{errorMsg}</Error>
                 }
