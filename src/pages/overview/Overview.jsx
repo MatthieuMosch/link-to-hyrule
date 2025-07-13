@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Tile from "../../components/tile/Tile.jsx";
 import InputField from "../../components/inputfield/InputField.jsx";
+import Button from "../../components/button/Button.jsx";
 
 function Overview() {
     const controller = new AbortController();
@@ -14,6 +15,8 @@ function Overview() {
     const [tiles, setTiles] = useState([]);
     const [filteredTiles, setFilteredTiles] = useState([]);
     const [query, setQuery] = useState("");
+    const [sortedTiles, setSortedTiles] = useState([]);
+    const [sortDirection, setSortDirection] = useState(0);
 
     useEffect(() => {
         async function getData() {
@@ -45,8 +48,25 @@ function Overview() {
 
     useEffect(() => {
         setFilteredTiles(tiles.filter((tile) => tile.name.toLowerCase().includes(query.toLowerCase())));
-        // TODO : add more filters here
     }, [query, tiles])
+
+    useEffect( () => {
+        const sorted = [].concat(filteredTiles);
+        sorted.sort((a, b) => {
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            let result = 0;
+            if (nameA < nameB) {
+                result = -1;
+            } else if (nameA > nameB) {
+                result = 1;
+            } else {
+                result = 0;
+            }
+            return result * sortDirection;
+        });
+        setSortedTiles(sorted);
+    }, [sortDirection, filteredTiles]);
 
     function handleChange(e) {
         setQuery(e.target.value)
@@ -60,14 +80,19 @@ function Overview() {
                             changeHandler={handleChange}>
                     Search for
                 </InputField>
+                {/*<section>*/}
+                    <Button className="sort-direction" onClick={() => setSortDirection(1)}>A - Z</Button>
+                    <Button className="sort-direction" onClick={() => setSortDirection(0)}>O</Button>
+                    <Button className="sort-direction" onClick={() => setSortDirection(-1)}>Z - A</Button>
+                {/*</section>*/}
             </nav>
             <article className="table">
                 {loading && <dialog open>Loading tiles...</dialog>}
                 {errorMsg ? <dialog open>{errorMsg}</dialog> :
-                    filteredTiles.length > 0 ?
+                    sortedTiles.length > 0 ?
                         <section className="tiles">
                             {
-                                filteredTiles.map(tile => (
+                                sortedTiles.map(tile => (
                                     <Tile category={category} key={tile.id} id={tile.id} name={tile.name} img={tile.image}/>
                                 ))
                             }
