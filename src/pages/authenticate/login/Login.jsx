@@ -1,9 +1,9 @@
+import "../authenticate.css";
+
 import {useContext, useState} from "react";
 import {AuthContext} from "../../../context/AuthProvider.jsx";
 import InputField from "../../../components/inputfield/InputField.jsx";
 import Button from "../../../components/button/Button.jsx";
-
-import "../authenticate.css";
 
 function Login() {
     const {login} = useContext(AuthContext);

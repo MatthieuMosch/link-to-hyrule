@@ -5,6 +5,23 @@
   padding: 0;
 }
 
+:root {
+  /* used colors */
+  --error: #B3001B;
+  --back-main: darkgoldenrod;
+  --light-back-main: goldenrod;
+  --back-tile: #F0A202;
+  --dark: #252C37;
+  --light: white;
+  --ok: green;
+  --not-slain: grey;
+  /* used sizes */
+  --header-height: 70px;
+  --footer-height: 70px;
+  /* used font */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
 body {
   display: flex;
   flex-direction: column;

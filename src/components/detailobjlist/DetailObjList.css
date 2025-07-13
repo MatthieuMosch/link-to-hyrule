@@ -13,15 +13,15 @@ td {
 }
 
 tr:nth-child(odd) {
-    background-color: goldenrod;
+    background-color: var(--light-back-main);
 }
 
 tr:first-child {
-    background-color: black;
-    color: goldenrod;
+    background-color: var(--dark);
+    color: var(--light-back-main);
 }
 
 tr:nth-child(2) {
     background-color: darkorange;
-    color: black;
+    color: var(--dark);
 }

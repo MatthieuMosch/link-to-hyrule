@@ -1,6 +1,6 @@
 .error-message {
-    background-color: red;
-    color: white;
+    background-color: var(--error);
+    color: var(--light);
     text-align: center;
     width: 100%;
 }

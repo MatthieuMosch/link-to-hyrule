@@ -36,7 +36,7 @@ nav ul {
     height: 3em;
     font-size: 1em;
     padding: 0.5em;
-    border-color: goldenrod;
+    border-color: var(--light-back-main);
     background-color: var(--back-main);
     color: var(--dark);
 }

@@ -1,8 +1,8 @@
+import "../authenticate.css";
+
 import {useContext, useEffect} from "react";
 import {AuthContext} from "../../../context/AuthProvider.jsx";
 import InputField from "../../../components/inputfield/InputField.jsx";
-
-import "../authenticate.css";
 
 function Profile() {
     const {user, getUser} = useContext(AuthContext);

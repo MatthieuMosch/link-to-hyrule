@@ -1,0 +1,39 @@
+.score-container {
+    position: relative;
+    border: white solid 1px;
+    width: 3em;
+    height: 280px;
+    color: purple;
+}
+
+.score-bar {
+    background: yellow;
+    background: linear-gradient(0deg, red 0%, yellow 50%, green 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.max-score {
+    color: black;
+    position: absolute;
+}
+
+.min-score {
+    color: white;
+    position: absolute;
+    bottom: 0;
+}
+
+.score-left {
+    color: black;
+    position: absolute;
+}
+
+.score-right {
+    color: black;
+    position: absolute;
+    right: 0;
+}
