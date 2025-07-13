@@ -1,10 +1,9 @@
 import "./Quiz.css";
 import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import axios from "axios";
 import Button from "../../components/button/Button.jsx";
-import InputField from "../../components/inputfield/InputField.jsx";
 import Score from "../../components/score/Score.jsx";
-import {useParams} from "react-router-dom";
 
 function Quiz() {
     const {category} = useParams();

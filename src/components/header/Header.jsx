@@ -1,10 +1,9 @@
-import {useContext} from "react";
-import {Link, NavLink, useNavigate} from "react-router-dom";
-import {AuthContext} from "../../context/AuthProvider.jsx";
-import logo from "../../assets/zeldaicon.png";
-
 import "./Header.css";
+import {useContext} from "react";
+import {AuthContext} from "../../context/AuthProvider.jsx";
+import {Link, useNavigate} from "react-router-dom";
 import Button from "../button/Button.jsx";
+import logo from "../../assets/zeldaicon.png";
 
 function Header() {
     const navigate = useNavigate();

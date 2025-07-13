@@ -1,7 +1,7 @@
 import "./Marker.css";
 import {useContext, useEffect, useState} from "react";
-import {loadState, saveState} from "../../helpers/storeState.jsx";
 import {AuthContext} from "../../context/AuthProvider.jsx";
+import {loadState, saveState} from "../../helpers/storeState.jsx";
 
 function Marker({id, img, alt}) {
     const [state, setState] = useState(false);

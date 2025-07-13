@@ -1,15 +1,9 @@
 import {createContext, useEffect, useState} from "react";
-import axios from "axios";
-import {checkJwt} from "../helpers/checkJWT.jsx";
 import {useNavigate} from "react-router-dom";
+import {checkJwt} from "../helpers/checkJWT.jsx";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
-
-// TODO : check if alive (test to wakeup)
-// GET /api/test/all
-// answer should be : "De API is bereikbaar."
-// https://frontend-educational-backend.herokuapp.com/api/test/all
-// more info on : https://github.com/hogeschoolnovi/novi-educational-backend-documentation?tab=readme-ov-file#0-test
 
 function AuthContextProvider({children}) {
     const navigate = useNavigate();

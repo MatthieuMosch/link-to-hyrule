@@ -1,5 +1,3 @@
-import "./DetailList.css";
-
 function DetailList ({description, items}) {
     return (
         items && items.length > 0 &&

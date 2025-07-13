@@ -1,5 +1,4 @@
 import "../authenticate.css";
-
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../../context/AuthProvider.jsx";
 import {checkPasswordConfirm, checkPasswordLength} from "../../../helpers/checkPassword.jsx";

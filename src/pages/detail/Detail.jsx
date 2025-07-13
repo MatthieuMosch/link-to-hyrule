@@ -1,6 +1,5 @@
 import "./Detail.css";
-
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import sword from "../../assets/mastersword.png";
@@ -10,12 +9,8 @@ import DetailObjList from "../../components/detailobjlist/DetailObjList.jsx";
 import Marker from "../../components/marker/Marker.jsx";
 
 function Detail() {
-    const navigate = useNavigate();
     const controller = new AbortController();
     const baseURI = "https://botw-compendium.herokuapp.com/api/v3";
-    // https://botw-compendium.herokuapp.com/api/v3/regions/eldin
-    // https://botw-compendium.herokuapp.com/api/v3/compendium/entry/moblin
-    // https://botw-compendium.herokuapp.com/api/v3/compendium/entry/108
     const {category, id} = useParams();
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
@@ -62,10 +57,7 @@ function Detail() {
             {errorMsg ? <dialog open>{errorMsg}</dialog> :
                 <article className="detail">
                     <CloseButton to={`/overview/${category}`} />
-                    {/*TODO click on the sword figure to mark as slain*/}
                     {category === "monsters" && <Marker id={id} img={sword} alt="Verslagen"/>}
-                    {/*TODO mark materials when collected, count how many - future development*/}
-                    {/*TODO mark regions when visited - future development*/}
                     <h2>{details.name}</h2>
                     {category === "regions" ?
                         <figure id="detail_image"><img src={`/regions/${details.name}.jpg`} alt={details.name}/></figure> :

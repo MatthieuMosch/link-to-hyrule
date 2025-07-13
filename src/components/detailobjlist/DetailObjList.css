@@ -16,12 +16,8 @@ tr:nth-child(odd) {
     background-color: var(--light-back-main);
 }
 
-tr:first-child {
+th {
     background-color: var(--dark);
     color: var(--light-back-main);
-}
-
-tr:nth-child(2) {
-    background-color: darkorange;
-    color: var(--dark);
+    border-color: var(--light-back-main);
 }
