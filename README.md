@@ -3,9 +3,10 @@
 1. [Inleiding](#inleiding)
 2. [Screenshot](#screenshot)
 3. [Benodigdheden](#benodigdheden)
-4. [De applicatie draaien](#de-applicatie-draaien)
-5. [Overige commando's](#overige-commandos)
-6. [Testgebruikers](#testgebruikers)
+4. [GitHub Repository](#github-repository)
+5. [De applicatie draaien](#de-applicatie-draaien)
+6. [Overige commando's](#overige-commandos)
+7. [Testgebruikers](#testgebruikers)
 
 ## Inleiding
 
@@ -30,6 +31,12 @@ Om de applicatie te kunnen draaien heb je nodig:
 - node.js : om een webserver te starten waarop de applicatie te gebruiken is
 - internet : voor verbinding met de authenticatie backend en de API met de data van Zelda Breath of the Wild
 - de applicatie gebruikt de data van de [Hyrule Compendium API](https://gadhagod.github.io/Hyrule-Compendium-API/#/)
+
+## GitHub Repository
+
+De GitHub Repository van deze applicatie is te vinden op :
+
+[https://github.com/MatthieuMosch/link-to-hyrule](https://github.com/MatthieuMosch/link-to-hyrule)
 
 ## De applicatie draaien
 
