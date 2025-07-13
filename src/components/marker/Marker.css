@@ -13,7 +13,7 @@
 
 
 .marker.true {
-    background-color: var(--slain);
+    background-color: var(--ok);
 }
 
 .marker.false {

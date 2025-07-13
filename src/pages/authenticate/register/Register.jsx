@@ -1,3 +1,5 @@
+import "../authenticate.css";
+
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../../context/AuthProvider.jsx";
 import {checkPasswordConfirm, checkPasswordLength} from "../../../helpers/checkPassword.jsx";
@@ -5,8 +7,6 @@ import InputField from "../../../components/inputfield/InputField.jsx";
 import Button from "../../../components/button/Button.jsx";
 import FieldCheck from "../../../components/fieldcheck/FieldCheck.jsx";
 import Error from "../../../components/error/Error.jsx";
-
-import "../authenticate.css";
 
 function Register() {
     const {register} = useContext(AuthContext);

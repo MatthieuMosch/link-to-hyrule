@@ -1,4 +1,5 @@
 import "./Detail.css";
+
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -36,7 +37,6 @@ function Detail() {
                     uri,
                     {signal: controller.signal}
                 );
-                console.log(response);
                 setDetails(response.data.data);
             } catch (err) {
                 if (axios.isCancel(err)) {

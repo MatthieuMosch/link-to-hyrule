@@ -1,4 +1,5 @@
 import "./Overview.css";
+
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -7,9 +8,9 @@ import InputField from "../../components/inputfield/InputField.jsx";
 import Button from "../../components/button/Button.jsx";
 
 function Overview() {
+    const {category} = useParams();
     const controller = new AbortController();
     const baseUri = "https://botw-compendium.herokuapp.com/api/v3/";
-    const {category} = useParams();
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [tiles, setTiles] = useState([]);
@@ -93,7 +94,8 @@ function Overview() {
                         <section className="tiles">
                             {
                                 sortedTiles.map(tile => (
-                                    <Tile category={category} key={tile.id} id={tile.id} name={tile.name} img={tile.image}/>
+                                    <Tile category={category} key={tile.id} id={tile.id}
+                                          name={tile.name} img={tile.image}/>
                                 ))
                             }
                         </section> : null

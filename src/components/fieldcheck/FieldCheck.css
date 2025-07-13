@@ -5,9 +5,9 @@
 }
 
 .field-check.true {
-    color: green;
+    color: var(--ok);
 }
 
 .field-check.false {
-    color: red;
+    color: var(--error);
 }

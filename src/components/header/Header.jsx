@@ -18,6 +18,8 @@ function Header() {
             <nav className="authentication">
                 {isAuth ?
                     <ul>
+                        <li><Button className="nav-button" onClick={() => navigate("/")}>Home</Button></li>
+                        <li><Button className="nav-button" onClick={() => navigate("/quiz/monsters")}>Quiz</Button></li>
                         <li><Button className="nav-button" onClick={() => navigate("/profile")}>Profile</Button></li>
                         <li><Button className="nav-button" onClick={logout}>Logout</Button></li>
                     </ul> :
