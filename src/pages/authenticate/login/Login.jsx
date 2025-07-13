@@ -1,11 +1,12 @@
 import {useContext, useState} from "react";
-import {AuthContext} from "../../context/AuthProvider.jsx";
-import InputField from "../../components/inputfield/InputField.jsx";
+import {AuthContext} from "../../../context/AuthProvider.jsx";
+import InputField from "../../../components/inputfield/InputField.jsx";
+import Button from "../../../components/button/Button.jsx";
 
-import "./Register.css";
+import "../authenticate.css";
 
-function Register() {
-    const {register} = useContext(AuthContext);
+function Login() {
+    const {login} = useContext(AuthContext);
     const [formState, setFormState] = useState({
         username: "",
         email: "",
@@ -15,34 +16,30 @@ function Register() {
     })
 
     function handleChange(e) {
-        setFormState({...formState, [e.target.name]: e.target.value});
+        setFormState({ ...formState, [e.target.name]: e.target.value });
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        void register(formState);
+        void login(formState);
     }
 
     return (
-        <main>
-            <h1>registeren</h1>
+        <main className="authenticate">
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <InputField type="text" name="username" placeholder="Enter username"
                             value={formState.username} changeHandler={handleChange}>
                     Username:
                 </InputField>
-                <InputField type="email" name="email" placeholder="name@domain"
-                            value={formState.email} changeHandler={handleChange}>
-                    E-mail:
-                </InputField>
                 <InputField type="password" name="password" placeholder="******"
                             value={formState.password} changeHandler={handleChange}>
                     Password:
                 </InputField>
-                <button type="submit">Register</button>
+                <Button type="submit">Login</Button>
             </form>
         </main>
     );
 }
 
-export default Register;
+export default Login;
