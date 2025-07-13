@@ -1,12 +1,12 @@
 import "./App.css";
 import {useContext} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
+import {AuthContext} from "./context/AuthProvider.jsx";
 import Home from "./pages/home/Home.jsx";
 import Register from "./pages/authenticate/register/Register.jsx";
 import Login from "./pages/authenticate/login/Login.jsx";
 import Profile from "./pages/authenticate/profile/Profile.jsx";
 import NotFound from "./pages/notfound/NotFound.jsx";
-import {AuthContext} from "./context/AuthProvider.jsx";
 import Header from "./components/header/Header.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import Overview from "./pages/overview/Overview.jsx";

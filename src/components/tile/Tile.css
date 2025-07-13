@@ -7,7 +7,6 @@
 .tile {
     flex-basis: 12.5%;
     background-color: var(--back-tile);
-    /*color: black;*/
 }
 
 .tile-image {

@@ -1,5 +1,3 @@
-import "./Button.css";
-
 function Button({className, type="button", disabled, onClick, children}) {
     return (
         <button
@@ -10,7 +8,7 @@ function Button({className, type="button", disabled, onClick, children}) {
         >
             {children}
         </button>
-);
+    );
 }
 
 export default Button;

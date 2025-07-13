@@ -1,7 +1,5 @@
 import "./Home.css";
-
 import Selector from "../../components/selector/Selector.jsx";
-
 import hyrule from "../../assets/hyrule.jpg";
 
 function Home() {
